@@ -14,5 +14,7 @@
 
 int	ft_printf(const char *print_string, ...)
 {
-	find_spec(
+	s_params	params;
+	
+	find_spec();
 }

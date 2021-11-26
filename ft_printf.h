@@ -18,10 +18,11 @@
 
 typedef struct s_list
 {
-    char            *tmp_string;
-    int             fd;
-    struct s_list   *next;
-}   t_info;
+	int		whideness;
+	int		precision;
+	char	specificator;
+
+}	s_params;
 
 int some_prototype (int num);
 
