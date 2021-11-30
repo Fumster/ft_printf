@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:37:01 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/11/23 21:51:32 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/11/30 21:49:18 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 typedef struct s_list
 {
-	int		whideness;
+	int		width;
 	int		precision;
-	char	specificator;
+	char	specificator[1];
 
 }	s_params;
 
