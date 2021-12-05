@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+void	print_hex(unsigned int num, int prnt_cntr, char param)
+{
+	char	str[9];
+// print hex number if param x-print in small case, X-print in big case, p-print with zeros at the end started with "0x"
+}
+
+
 void    print_c(va_list args, s_params *s_info, int *prnt_cntr)
 {	
 	int	argument;
@@ -35,6 +42,10 @@ void    print_s(va_list args, s_params *s_info, int *prnt_cntr)
 void    print_p(va_list args, s_params *s_info, int *prnt_cntr)
 
 {
+	unsigned int	argument;
+
+	argument = va_arg(args, unsigned int);
+	print_hex(argument, prnt_cntr, 'p');
 	return ;
 }
 
@@ -54,11 +65,19 @@ void    print_u(va_list args, s_params *s_info, int *prnt_cntr)
 
 void    print_x(va_list args, s_params *s_info, int *prnt_cntr)
 {
+	unsigned int	argument;
+
+	argument = va_arg(args, unsigned int);
+	print_hex(argument, prnt_cntr, 'x');
 	return ;
 }
 
 void    print_X(va_list args, s_params *s_info, int *prnt_cntr)
 {
+	unsigned int	argument;
+
+	argument = va_arg(args, unsigned int);
+	print_hex(argument, prnt_cntr, 'X');
 	return ;
 }
 
