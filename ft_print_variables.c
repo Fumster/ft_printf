@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:20:29 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/06 20:30:12 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/06 20:41:48 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@ void	print_hex(unsigned int num, int prnt_cntr, char param)
 	
 	i = 8;
 	str[9] = 0;
-	while (num > 16)
+	while (i >= 0)
 	{
 		num %=16;
 		digit = num;
+		if (digit < 9)
+			str[i] = digit + '0';
+		else if param = 'X'
+			str[i] = (digit - 10) + 'A';
+		else str[i] = (digit - 10) + 'a';
+		i--;
 	}
 }
 
