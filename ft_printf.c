@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:28:00 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/07 20:47:03 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/07 22:24:50 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_args(va_list args, s_params *s_info, int *prnt_cntr)
 	else if (s_info->specificator[0] == 'X')
 		print_X(args, s_info, prnt_cntr);
 	else if (s_info->specificator[0] == '%')
-		print_prcnt(args, s_info, prnt_cntr);
+		print_prcnt(s_info, prnt_cntr);
 }
 
 int	fill_list(s_params *s_info,const char *str)
@@ -63,10 +63,15 @@ int print_to(const char *str, int *prnt_cntr, char end)
 {
 	int	i;
 	i = 0;
-	while (str[i] && (str[i] != end))
+	while (str && str[i] && (str[i] != end))
 	{
 		write(1, &str[i], 1);
 		i++;
+	}
+	if (!str)
+	{
+		write (1, "(null)", 6);
+		*prnt_cntr += 6;
 	}
 	*prnt_cntr += i;
 	return (i);
