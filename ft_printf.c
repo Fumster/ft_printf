@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:28:00 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/02 21:38:38 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/07 20:47:03 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,20 @@ void	print_args(va_list args, s_params *s_info, int *prnt_cntr)
 {
 	if (s_info->specificator[0] == 'c')
 		print_c(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 's')
+	else if (s_info->specificator[0] == 's')
 		print_s(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'p')
+	else if (s_info->specificator[0] == 'p')
 		print_p(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'd')
-		print_d(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'i')
-		print_i(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'u')
+	else if (s_info->specificator[0] == 'd' ||
+			s_info->specificator[0] == 'i')
+		print_int(args, s_info, prnt_cntr);
+	else if (s_info->specificator[0] == 'u')
 		print_u(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'x')
+	else if (s_info->specificator[0] == 'x')
 		print_x(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == 'X')
+	else if (s_info->specificator[0] == 'X')
 		print_X(args, s_info, prnt_cntr);
-	if (s_info->specificator[0] == '%')
+	else if (s_info->specificator[0] == '%')
 		print_prcnt(args, s_info, prnt_cntr);
 }
 
@@ -83,7 +82,6 @@ int	ft_printf(const char *p_string, ...)
 	brkpnt = 0;
 	prnt_cntr = 0;
 	va_start(args, p_string);
-	//va_arg(agrs, int) - take next argument by its type
 	while (p_string[brkpnt])
 	{
 		brkpnt += print_to(p_string + brkpnt, &prnt_cntr, '%');
