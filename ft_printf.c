@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:28:00 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/08 19:37:35 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:14:31 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_args(va_list args, s_params *s_info, int *prnt_cntr)
 	else if (s_info->specificator[0] == 'x')
 		print_x(args, s_info, prnt_cntr);
 	else if (s_info->specificator[0] == 'X')
-		print_X(args, s_info, prnt_cntr);
+		print_upper_x(args, s_info, prnt_cntr);
 	else if (s_info->specificator[0] == '%')
 		print_prcnt(s_info, prnt_cntr);
 }
@@ -43,18 +43,18 @@ int	fill_list(s_params *s_info,const char *str)
 	s_info->specificator[0] = 0;
 	if (!str[0])
 		return (0);
-	while ((str[i] >= '0') && (str[i] <= '9'))
-	{
-		s_info->width = (s_info->width * 10) + (str[i] - 48);
-		i++;
-	}
-	if (str[i] == '.')
-		i++;
-	while ((str[i] >= '0') && (str[i] <= '9'))
-	{
-		s_info->precision = (s_info->precision * 10) + (str[i] - 48);
-		i++;
-	}
+//	while ((str[i] >= '0') && (str[i] <= '9'))
+//	{
+//		s_info->width = (s_info->width * 10) + (str[i] - 48);
+//		i++;
+//	}
+//	if (str[i] == '.')
+//		i++;
+//	while ((str[i] >= '0') && (str[i] <= '9'))
+//	{
+//		s_info->precision = (s_info->precision * 10) + (str[i] - 48);
+//		i++;
+//	}
 	s_info->specificator[0] = str[i];
 	return (i + 1);
 }

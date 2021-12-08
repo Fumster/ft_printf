@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:37:01 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/07 21:45:59 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:15:20 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void    print_p(va_list args, s_params *s_info, int *prnt_cntr);
 void    print_int(va_list args, s_params *s_info, int *prnt_cntr);
 void    print_u(va_list args, s_params *s_info, int *prnt_cntr);
 void    print_x(va_list args, s_params *s_info, int *prnt_cntr);
-void    print_X(va_list args, s_params *s_info, int *prnt_cntr);
+void    print_upper_x(va_list args, s_params *s_info, int *prnt_cntr);
 void    print_prcnt(s_params *s_info, int *prnt_cntr);
 #endif

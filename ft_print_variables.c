@@ -6,7 +6,7 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:20:29 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/08 20:02:28 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/08 22:22:34 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,55 +26,24 @@ void	print_unsigned(unsigned int num, int *prnt_cntr)
 	*prnt_cntr += 1;
 }
 
-void	create_hex_str(unsigned long int num, char *str, char param)
+void	print_hex(unsigned long long int num,int *prnt_cntr, char param)
 {
-	int	i;
-	int	digit;
+	 int	digit;
 
-	i = 18;
-	str[19] = 0;
-	while (i >= 0)
-	{
+	digit = num;
+	if (num > 15)
+	{	
 		digit = num % 16;
-		num /= 16;
-		if (digit <= 9)
-			str[i] = digit + '0';
-		else if (param == 'X')
-			str[i] = (digit - 10) + 'A';
-		else
-			str[i] = (digit - 10) + 'a';
-		i--;
+		print_hex(num / 16, prnt_cntr, param);
 	}
-}
-
-void	print_hex(unsigned long int num, s_params *s_info,
-					int *prnt_cntr, char param)
-{
-	int		i;
-	char	str[20];
-
-	i = s_info->width;
-	i = 0;
-	while (i < 20)
-	{
-		str[i] = '0';
-		i++;
-	}
-	i = 0;
-	create_hex_str(num, str, param);
-	while (str[i] == '0')
-		i++;
-	if (!str[i])
-	{
-		write (1, "0", 1);
-		*prnt_cntr += 1;
-	}
-	while (str[i])
-	{
-		write (1, &str[i], 1);
-		*prnt_cntr += 1;
-		i++;
-	}
+	if (digit >= 0 && digit <= 9)
+		digit += '0';
+	else if	(param == 'X')
+		digit = digit - 10 + 'A';
+	else
+		digit = digit - 10 + 'a';
+	write(1, &digit, 1);
+	*prnt_cntr += 1;
 }
 
 void	print_c(va_list args, s_params *s_info, int *prnt_cntr)
@@ -109,7 +78,7 @@ void	print_p(va_list args, s_params *s_info, int *prnt_cntr)
 	argument = va_arg(args, unsigned long int);
 	write (1, "0x", 2);
 	*prnt_cntr += 2;
-	print_hex(argument, s_info, prnt_cntr, 'x');
+	print_hex(argument, prnt_cntr, 'x');
 	return ;
 }
 
@@ -141,20 +110,20 @@ void	print_u(va_list args, s_params *s_info, int *prnt_cntr)
 
 void	print_x(va_list args, s_params *s_info, int *prnt_cntr)
 {
-	unsigned long int	argument;
+	unsigned long long int	argument;
 
 	argument = s_info->width;
-	argument = va_arg(args, unsigned long int);
-	print_hex(argument, s_info, prnt_cntr, 'x');
+	argument = va_arg(args, unsigned long long int);
+	print_hex(argument, prnt_cntr, 'x');
 }
 
-void	print_X(va_list args, s_params *s_info, int *prnt_cntr)
+void	print_upper_x(va_list args, s_params *s_info, int *prnt_cntr)
 {
 	unsigned long int	argument;
 
 	argument = s_info->width;
 	argument = va_arg(args, unsigned long int);
-	print_hex(argument, s_info, prnt_cntr, 'X');
+	print_hex(argument, prnt_cntr, 'X');
 }
 
 void	print_prcnt(s_params *s_info, int *prnt_cntr)
