@@ -6,48 +6,48 @@
 /*   By: fchrysta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 21:28:00 by fchrysta          #+#    #+#             */
-/*   Updated: 2021/12/13 20:03:43 by fchrysta         ###   ########.fr       */
+/*   Updated: 2021/12/13 21:15:06 by fchrysta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_args(va_list args, s_params *s_info)
+void	print_args(va_list args, t_params *info)
 {
-	if (s_info->specificator == 'c')
-		print_c(args, s_info);
-	else if (s_info->specificator == 's')
-		print_s(args, s_info);
-	else if (s_info->specificator == 'p')
-		print_p(args, s_info);
-	else if (s_info->specificator == 'd' ||
-			s_info->specificator == 'i')
-		print_int(args, s_info);
-	else if (s_info->specificator == 'u')
-		print_u(args, s_info);
-	else if (s_info->specificator == 'x')
-		print_x(args, s_info);
-	else if (s_info->specificator == 'X')
-		print_upper_x(args, s_info);
-	else if (s_info->specificator == '%')
-		print_prcnt(s_info);
+	if (info->specificator == 'c')
+		print_c(args, info);
+	else if (info->specificator == 's')
+		print_s(args, info);
+	else if (info->specificator == 'p')
+		print_p(args, info);
+	else if (info->specificator == 'd'
+		|| info->specificator == 'i')
+		print_int(args, info);
+	else if (info->specificator == 'u')
+		print_u(args, info);
+	else if (info->specificator == 'x')
+		print_x(args, info);
+	else if (info->specificator == 'X')
+		print_upper_x(args, info);
+	else if (info->specificator == '%')
+		print_prcnt(info);
 }
 
 int	ft_printf(const char *p_string, ...)
 {
 	int			brkpnt;
-	s_params	s_info;
+	t_params	info;
 	va_list		args;
 
 	brkpnt = 0;
-	s_info.prnt_cntr = 0;
+	info.prnt_cntr = 0;
 	va_start(args, p_string);
 	while (p_string[brkpnt])
 	{
-		brkpnt += print_to(p_string + brkpnt, &s_info, '%');
-		brkpnt += fill_list(&s_info, p_string + brkpnt);
-		print_args(args, &s_info);
+		brkpnt += print_to(p_string + brkpnt, &info, '%');
+		brkpnt += fill_list(&info, p_string + brkpnt);
+		print_args(args, &info);
 	}
 	va_end(args);
-	return (s_info.prnt_cntr);
+	return (info.prnt_cntr);
 }
